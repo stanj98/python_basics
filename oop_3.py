@@ -22,14 +22,15 @@ class Employee():
 		self.pay = int(self.pay * self.raise_amount)
 
 
-	# @classmethod
-	# def set_raise_amount(cls):
+	@classmethod
+	def set_raise_amount(cls):
+		pass
 		
 
 
 
 emp1 = Employee("Stanley", "John", 32000) 
-emp2 = Employee("Corey", "Shafer", 60000)
+emp2 = Employee("Paul", "Bauje", 60000)
 
 
 print(Employee.raise_amount)

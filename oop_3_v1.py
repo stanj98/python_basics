@@ -35,3 +35,25 @@ print(f(5))
 
 #Example of an aspect of a first-class function: pass a function as an argument to another function
 
+def map_list(func, arg_list):
+	new_list = [func(i) for i in arg_list]
+	return new_list
+
+
+initial_list = [1, 2, 3, 4, 5]
+print(map_list(square, initial_list))
+
+
+#Example of an aspect of a first-class function: return a function
+
+def logger(msg):
+
+	#dont need to pass in the msg parameter again into the below function since first-class functions
+	#remeber the initial parameters sent from the initial functions
+	def print_msg(user):
+		print(f'{user} says: {msg} ')
+
+	return print_msg
+
+msg1 = logger("Call me")
+msg1("Stan") 

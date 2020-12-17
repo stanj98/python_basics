@@ -21,3 +21,17 @@ and has access to variables in the local scope in which it was created even afte
 the outer function has finished executing.
 
 '''
+
+
+def initial_func(para):
+
+	message = para
+
+	def second_func(another_para):
+		print(f'{another_para} and {message} got engaged.')
+
+	return second_func
+
+
+call_func = initial_func("Theo")
+call_func('Becky')

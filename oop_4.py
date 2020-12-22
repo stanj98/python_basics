@@ -47,27 +47,49 @@ class Developer(Employee):
 
 class Manager(Employee):
 
-	def __init__(self, first_name, last_name, pay):
-		super(). __init__(first_name, last_name, pay, employees = None)
+	def __init__(self, first_name, last_name, pay,  employees = None):
+		#Never pass mutable data types as parameters such as list or a dictionary. Use None instead.
+		super(). __init__(first_name, last_name, pay)
 		if employees is None:
 			self.employees = []
 		else:
 			self.employees = employees
 
 
-	
+		def add_emp(self, emp):
+			if emp not in self.employees:
+				self.employees.append(emp)
+
+		def remove_emp(self, emp):
+			if emp in self.employees:
+				self.employees.remove(emp)
+
+		def print_emps(self):
+			for emp in self.employees:
+				print(f'--> {emp.full_name()}')
+
 
 
 dev_1 = Developer("Stanley", "John", 32000, "Python") 
 dev_2 = Developer("Paul", "Bauje", 60000, "Java")
 
-print(dev_1.email)
-print(dev_2.email)
+manager_1 = Manager('Amit', 'Trivedi', 90000, [dev_1])
 
-print(dev_1.prog_lang)
-print(dev_2.prog_lang)
+manager_1.add_emp(dev_2)
+
+manager_1.remove_emp(dev_1)
 
 
-print(dev_1.pay)
-dev_1.apply_raise()
-print(dev_1.pay)
+# print(dev_1.email)
+# print(dev_2.email)
+
+# print(dev_1.prog_lang)
+# print(dev_2.prog_lang)
+
+
+# print(dev_1.pay)
+# dev_1.apply_raise()
+# print(dev_1.pay)
+
+print(manager_1.full_name())
+manager_1.print_emps()

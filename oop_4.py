@@ -6,6 +6,9 @@
 '''
 Method resolution order - where Python walks up the chain of inheritance until it finds
 what its looking for. The place where the attributes and methods are searched for in a Class.
+
+The super() function is used to give access to methods and properties of a parent or sibling class. 
+The super() function returns an object that represents the parent class.
 '''
 
 class Employee():
@@ -28,18 +31,65 @@ class Employee():
 
 
 class Developer(Employee):
-	#override the raise amount here
+	#override the raise amount here, will not affect any of the Employee instances or the Employee class
 	raise_amount = 1.10
 
+	#override the init method
+
+	def __init__(self, first_name, last_name, pay, prog_lang):
+		#pass the variables to the Employee class to avoid duplication and initiate the employee
+		#object as well as add in a specific attribute for the subclass.
+		super().__init__(first_name, last_name, pay)
+		#or, you can initiate it like this
+		# Employee.__init__(self, first_name, last_name, pay)
+		self.prog_lang = prog_lang
 
 
-dev_1 = Developer("Stanley", "John", 32000) 
-dev_2 = Developer("Paul", "Bauje", 60000)
+class Manager(Employee):
 
-print(dev_1.email)
-print(dev_2.email)
+	def __init__(self, first_name, last_name, pay,  employees = None):
+		#Never pass mutable data types as parameters such as list or a dictionary. Use None instead.
+		super(). __init__(first_name, last_name, pay)
+		if employees is None:
+			self.employees = []
+		else:
+			self.employees = employees
 
 
-print(dev_1.pay)
-dev_1.apply_raise()
-print(dev_1.pay)
+		def add_emp(self, emp):
+			if emp not in self.employees:
+				self.employees.append(emp)
+
+		def remove_emp(self, emp):
+			if emp in self.employees:
+				self.employees.remove(emp)
+
+		def print_emps(self):
+			for emp in self.employees:
+				print(f'--> {emp.full_name()}')
+
+
+
+dev_1 = Developer("Stanley", "John", 32000, "Python") 
+dev_2 = Developer("Paul", "Bauje", 60000, "Java")
+
+manager_1 = Manager('Amit', 'Trivedi', 90000, [dev_1])
+
+manager_1.add_emp(dev_2)
+
+manager_1.remove_emp(dev_1)
+
+
+# print(dev_1.email)
+# print(dev_2.email)
+
+# print(dev_1.prog_lang)
+# print(dev_2.prog_lang)
+
+
+# print(dev_1.pay)
+# dev_1.apply_raise()
+# print(dev_1.pay)
+
+print(manager_1.full_name())
+manager_1.print_emps()

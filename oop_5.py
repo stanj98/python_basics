@@ -8,6 +8,15 @@ By creating our own special methods, we can change some of the built-in
 behaviour and operations.
 
 These methods are always surrounded by double underscores i.e '__' 'dunder'
+
+In Python, special methods are a set of predefined methods you can use to enrich your classes. 
+They are easy to recognize because they start and end with double underscores, 
+for example __init__ or __str__ .
+
+The goal for repr() special method is to be an unambigious representation of an object (should be
+used for debugging, logging and finding out more information about the object which is predominantly
+used by developers), and the goal for str() method is to be a readable representation of an object
+and is meant to be used as a display to the end-user.
 '''
 
 class Employee():
@@ -30,11 +39,32 @@ class Employee():
 
 
 	def __repr__(self):
-		pass
+		return f"Employee('{self.first_name}', '{self.last_name}', '{self.pay}')"
+
+	def __str__(self):
+		return f'{self.full_name()} - {self.email}'
+
+
+	def __add__(self, other):
+		return self.pay + other.pay
 
 
 
 emp1 = Employee("Stanley", "John", 32000) 
 emp2 = Employee("Paul", "Bauje", 60000)
 
-repr(emp2)
+# repr(emp2)
+
+# print(repr(emp1))
+# print(str(emp1))
+
+# print(emp1.__repr__())
+# print(emp1.__str__())
+
+#uses the special method 'dunder add' behind the scenes
+# print(int.__add__(1, 2))
+
+# print(str.__add__("hi ", "stan!"))
+
+
+print(emp1 + emp2)

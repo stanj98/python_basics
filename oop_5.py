@@ -20,7 +20,7 @@ and is meant to be used as a display to the end-user.
 
 
 'return/raise NonImplemented' - returns a fallback on the other object without throwing an error.
-It checks if the error is already taken care of by this object but if it does not handle the 
+It checks if the error handling is already taken care of by this object but if it does not handle the 
 error, then the NonImplemented raises an error eventually.
 '''
 
@@ -62,6 +62,7 @@ class Employee():
 emp1 = Employee("Stanley", "John", 32000) 
 emp2 = Employee("Paul", "Bauje", 60000)
 
+#implicitly called
 # repr(emp2)
 
 # print(repr(emp1))

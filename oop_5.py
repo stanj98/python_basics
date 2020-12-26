@@ -17,6 +17,11 @@ The goal for repr() special method is to be an unambigious representation of an 
 used for debugging, logging and finding out more information about the object which is predominantly
 used by developers), and the goal for str() method is to be a readable representation of an object
 and is meant to be used as a display to the end-user.
+
+
+'return/raise NonImplemented' - returns a fallback on the other object without throwing an error.
+It checks if the error is already taken care of by this object but if it does not handle the 
+error, then the NonImplemented raises an error eventually.
 '''
 
 class Employee():
@@ -49,6 +54,10 @@ class Employee():
 		return self.pay + other.pay
 
 
+	def __len__(self):
+		return len(self.full_name())
+
+
 
 emp1 = Employee("Stanley", "John", 32000) 
 emp2 = Employee("Paul", "Bauje", 60000)
@@ -68,3 +77,7 @@ emp2 = Employee("Paul", "Bauje", 60000)
 
 
 print(emp1 + emp2)
+
+print("test".__len__())
+
+print(len(emp1))
